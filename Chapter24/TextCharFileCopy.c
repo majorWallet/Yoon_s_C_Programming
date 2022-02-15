@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main()
+{
+	FILE* src = fopen("src.txt", "rt");
+	FILE* des = fopen("des.txt", "wt");
+	int ch;
+
+	if (src == NULL || des == NULL)
+	{
+		printf("파일오픈 실패!");
+		return -1;
+	}
+
+	while ((ch = fgetc(src)) != EOF)
+		fputc(ch, des);
+
+	if (feof(src) != 0)
+		printf("파일복사 완료!");
+	else
+		printf("파일복사 실패!");
+
+	fclose(src);
+	fclose(des);
+	return 0;
+}
